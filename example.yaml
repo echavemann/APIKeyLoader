@@ -1,0 +1,11 @@
+format:
+
+Service:
+  API.Key: 28392839283892
+  
+  
+Call:
+get_keys('example.yaml','Service', ['API.key'])
+
+Return:
+[28392839283892].
