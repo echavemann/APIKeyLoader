@@ -5,7 +5,7 @@ Service:
   
   
 Call:
-get_keys('example.yaml','Service', ['API.key'])
+get_keys('example.yaml','Service', ['API.Key'])
 
 Return:
 [28392839283892].
