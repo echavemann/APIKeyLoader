@@ -10,12 +10,11 @@ def get_keys(config_file, service, keys):
     with open(config_file, 'r') as stream:
         cfg = yaml.safe_load(stream)
     cfg = cfg[service]
-    cfg = cfg.split()
+    cfg = list(cfg.values())
     for i, key in enumerate(keys):
-        string = key + ':'
         t = cfg[i]
-        cfg[i] = cfg[i].replace(string,'')
+        cfg[i] = str(cfg[i])
+        cfg[i] = cfg[i].replace(key,'')
         if t == cfg[i]:
-            raise Exception('Key not found in config file!')
-        
+            raise Exception('Key not found in config file!')   
     return cfg
