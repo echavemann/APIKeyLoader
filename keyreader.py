@@ -6,15 +6,14 @@ import yaml
 #Returns a list of values for the given keys for the given service.
 
 #Now with exceptions and better sanitizing!
+#Rewritten with dict to be much better in every way bc dicts are magic!
 def get_keys(config_file, service, keys):
     with open(config_file, 'r') as stream:
         cfg = yaml.safe_load(stream)
     cfg = cfg[service]
-    cfg = list(cfg.values())
-    for i, key in enumerate(keys):
-        t = cfg[i]
-        cfg[i] = str(cfg[i])
-        cfg[i] = cfg[i].replace(key,'')
-        if t == cfg[i]:
-            raise Exception('Key not found in config file!')   
-    return cfg
+    ret = []
+    for key in (keys):
+        if key not in cfg.keys():
+            raise Exception('Missing key: ' + key)
+        ret.append(cfg[key])
+    return ret
